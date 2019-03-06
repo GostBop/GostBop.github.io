@@ -79,13 +79,30 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="服务计算的作业，基本上按照潘老师的博客上的步骤，踩着雷前进。简单地记录下遇到的坑  博客地址：使用 VirtualBox 让 PC 提供云桌面服务  [TOC] ##1. 安装VirtualBox git之前安装过了，没什么坑，跳过 VBox以前安装过，不过被我删了，后来又合并了一下分区，把E盘合并了，结果注册表上还残留着VBox的安装路径，导致出现了下图的错误  解决方案很简单，按照下面这个博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【服务计算】安装配置你的私有云">
+<meta property="og:url" content="http://yoursite.com/2019/03/06/【服务计算】安装配置你的私有云/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务计算的作业，基本上按照潘老师的博客上的步骤，踩着雷前进。简单地记录下遇到的坑  博客地址：使用 VirtualBox 让 PC 提供云桌面服务  [TOC] ##1. 安装VirtualBox git之前安装过了，没什么坑，跳过 VBox以前安装过，不过被我删了，后来又合并了一下分区，把E盘合并了，结果注册表上还残留着VBox的安装路径，导致出现了下图的错误  解决方案很简单，按照下面这个博客">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909150442657?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909151922713?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909153603572?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909153624793?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909153740119?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909155520826?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909155637360?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909160716944?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909160813484?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909163154990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909164208334?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180909164410790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-03-06T12:22:36.317Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="【服务计算】安装配置你的私有云">
+<meta name="twitter:description" content="服务计算的作业，基本上按照潘老师的博客上的步骤，踩着雷前进。简单地记录下遇到的坑  博客地址：使用 VirtualBox 让 PC 提供云桌面服务  [TOC] ##1. 安装VirtualBox git之前安装过了，没什么坑，跳过 VBox以前安装过，不过被我删了，后来又合并了一下分区，把E盘合并了，结果注册表上还残留着VBox的安装路径，导致出现了下图的错误  解决方案很简单，按照下面这个博客">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180909150442657?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 
 
 
@@ -115,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/06/【服务计算】安装配置你的私有云/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title>【服务计算】安装配置你的私有云 | Hexo</title>
   
 
 
@@ -140,8 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +230,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/06/【服务计算】安装配置你的私有云/" itemprop="url">【服务计算】安装配置你的私有云</a></h1>
+          <h1 class="post-title" itemprop="name headline">【服务计算】安装配置你的私有云</h1>
         
 
         <div class="post-meta">
@@ -298,9 +312,7 @@
       
 
       
-        
-          
-            <p>服务计算的作业，基本上按照潘老师的博客上的步骤，踩着雷前进。<br>简单地记录下遇到的坑</p>
+        <p>服务计算的作业，基本上按照潘老师的博客上的步骤，踩着雷前进。<br>简单地记录下遇到的坑</p>
 <blockquote>
 <p>博客地址：<a href="https://pmlpml.github.io/ServiceComputingOnCloud/ex-install-cloud" target="_blank" rel="noopener">使用 VirtualBox 让 PC 提供云桌面服务</a></p>
 </blockquote>
@@ -344,8 +356,6 @@
 <p>接下来弄一下全屏<br><a href="https://blog.csdn.net/u012847257/article/details/53514020" target="_blank" rel="noopener">centos7中全屏问题解决</a><br><img src="https://img-blog.csdn.net/20180909164208334?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="安装增强功能"><br>如果出现未能加载虚拟光驱的错误，参照这个博客：<br><a href="https://blog.csdn.net/u011784994/article/details/72844624" target="_blank" rel="noopener">virtualbox安装增强功能实现全屏</a><br><img src="https://img-blog.csdn.net/20180909164410790?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="桌面"></p>
 <p>基本情况就是这样，如果想切回命令行模式，参照这个博客：<br><a href="https://blog.csdn.net/qq_23014435/article/details/74347925" target="_blank" rel="noopener">centos7更改为启动桌面或命令行模式</a></p>
 
-          
-        
       
     </div>
     
@@ -362,12 +372,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -377,10 +387,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -388,6 +399,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -584,6 +599,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

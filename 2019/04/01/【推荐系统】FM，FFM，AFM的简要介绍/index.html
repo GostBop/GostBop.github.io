@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="推荐系统,机器学习,FM,FFM,AFM,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CTR Click-through rate (CTR) is the ratio of users who click on a specificlink to the number of total users who view a page, email, oradvertisement. It is commonly used to measure the success of an on">
+<meta name="keywords" content="推荐系统,机器学习,FM,FFM,AFM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【推荐系统】FM，FFM，AFM的简要介绍">
+<meta property="og:url" content="http://yoursite.com/2019/04/01/【推荐系统】FM，FFM，AFM的简要介绍/index.html">
+<meta property="og:site_name" content="GostBop">
+<meta property="og:description" content="CTR Click-through rate (CTR) is the ratio of users who click on a specificlink to the number of total users who view a page, email, oradvertisement. It is commonly used to measure the success of an on">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330195607258.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330195935272.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330200133278.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330204041301.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330203905772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330203756179.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330212357206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330205841849.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330210719358.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330211026680.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330211152551.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330211257647.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190330211437730.jpg">
+<meta property="og:updated_time" content="2019-04-01T09:34:03.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【推荐系统】FM，FFM，AFM的简要介绍">
+<meta name="twitter:description" content="CTR Click-through rate (CTR) is the ratio of users who click on a specificlink to the number of total users who view a page, email, oradvertisement. It is commonly used to measure the success of an on">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190330195607258.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/01/【推荐系统】FM，FFM，AFM的简要介绍/">
+
+
+
+
+
+  <title>【推荐系统】FM，FFM，AFM的简要介绍 | GostBop</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">GostBop</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/01/【推荐系统】FM，FFM，AFM的简要介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="GostBop">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GostBop">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【推荐系统】FM，FFM，AFM的简要介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T17:32:36+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/推荐系统/" itemprop="url" rel="index">
+                    <span itemprop="name">推荐系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CTR"><a href="#CTR" class="headerlink" title="CTR"></a>CTR</h2><blockquote>
+<p>Click-through rate (CTR) is the ratio of users who click on a specific<br>link to the number of total users who view a page, email, or<br>advertisement. It is commonly used to measure the success of an online<br>advertising campaign for a particular website as well as the<br>effectiveness of email campaigns.</p>
+</blockquote>
+<p>在计算广告和推荐系统中，CTR预估(click-through rate)是非常重要的一个环节，判断一个商品的是否进行推荐需要根据CTR预估的点击率来进行。准确的估计CTR对于提高流量的价值，增加广告收入有重要的指导作用。在进行CTR预估时，除了单特征外，往往要对特征进行组合。预估CTR，业界常用的方法有人工特征工程 + LR(Logistic Regression)、GBDT(Gradient Boosting Decision Tree) + LR、FM（Factorization Machine）和 FFM（Field-aware Factorization Machine）模型。在这些模型中，FM和FFM近年来表现突出，分别在由Criteo和Avazu举办的CTR预测竞赛中夺得冠军</p>
+<h2 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h2><p>FM(Factorization Machine)主要是为了解决数据稀疏的情况下，特征怎样组合的问题。</p>
+<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>在传统的线性回归模型中，对于一个给定的特征向量$X=(x_1,x_2,…,x_n)^T$，线性回归建模时采用的函数是</p>
+<p>$$<br>\hat{y}(x) = w_0+w_1x_1+w_2x_2+…+w_nx_n\<br>=w_0+\sum_{i=1}^nw_ix_i<br>$$</p>
+<p>可以看出，各特征分量$x_i$和$x_j$之间是相互孤立的，即$\hat{y}(x)$中仅考虑单个的特征分量，而没有考虑特征分量之间的相互关系（interaction）</p>
+<h3 id="特征组合"><a href="#特征组合" class="headerlink" title="特征组合"></a>特征组合</h3><p>所以，我们可以把函数$\hat{y}$改写成<br>$$<br>\hat{y}(x) =w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}w_{ij}x_ix_j<br>$$</p>
+<p>这样，便将任意两个（互异）特征分量之间的关系也考虑进来了</p>
+<p>不过，这种直接在特征分量$x_ix_j$前直接分配系数$w_{ij}$的方式，在处理稀疏矩阵时有一个很大的缺陷。</p>
+<p>稀疏矩阵即意味着大部分的特征分量是没有出现过交互的，即在矩阵中该位置为0（$x_i = 0$ $or$ $x_j = 0$），这样就不能对相应的参数进行估计</p>
+<p>而在高度稀疏的数据场景中，由于数据量的不足，样本中出现未交互的特征分量是很普遍的</p>
+<h3 id="辅助向量"><a href="#辅助向量" class="headerlink" title="辅助向量"></a>辅助向量</h3><p>因此针对每个维度的特征分量$x_i$，引入辅助向量<br>$$v_i=(v_i1, v_i2, …,v_ik)^T ∈ R^k，i = 1, 2, …, n$$<br>其中$k∈N^+$是超参数(hyperparameters)</p>
+<p>并将$w_{ij}$改写成<br>$$\hat{w_{ij}} = {v_i}^Tv_j:=\sum_{l=1}^kv_{il}v_{jl}$$</p>
+<p>于是，函数$\hat{y}$可以进一步改写为</p>
+<p>$$<br>\hat{y}(x) =w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}&lt;{v_i}^Tv_j&gt;x_ix_j<br>$$</p>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>对于模型方程，直观地计算复杂度可得<br>$${n+(n-1)} + {\cfrac{n(n-1)}{2}[k+(k-1)+2]+\cfrac{n(n-1)}{2}-1}+2=O(kn^2)$$</p>
+<p>但可以对方程改写，将其复杂度降为线性的O(kn)，具体推导过程如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190330195607258.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>于是复杂度变为<br>$$k{[n+(n-1)+1]+[3n+(n-1)]+1}+(k-1)+1=O(kn)$$</p>
+<h3 id="one-hot编码"><a href="#one-hot编码" class="headerlink" title="one-hot编码"></a>one-hot编码</h3><p>举一个广告分类问题的例子<br><img src="https://img-blog.csdnimg.cn/20190330195935272.png" alt="在这里插入图片描述"><br>clicked是分类值，表明用户有没有点击该广告。1表示点击，0表示未点击。而country,day,ad_type则是对应的特征。对于这种categorical特征，一般都是进行one-hot编码处理</p>
+<p>将上面的数据进行one-hot编码以后，就变成了下面这样 ：<br><img src="https://img-blog.csdnimg.cn/20190330200133278.png" alt="在这里插入图片描述"></p>
+<p>因为是categorical特征，所以经过one-hot编码以后，不可避免的样本的数据就变得很稀疏。比如假设淘宝或者京东上的item为100万，如果对item这个维度进行one-hot编码，光这一个维度数据的稀疏度就是百万分之一</p>
+<p>one-hot编码带来的另一个问题是特征空间变大。同样以上面淘宝上的item为例，将item进行one-hot编码以后，样本空间有一个categorical变为了百万维的数值特征，特征空间就一下子暴增一百万</p>
+<h2 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h2><h3 id="field"><a href="#field" class="headerlink" title="field"></a>field</h3><p>FFM（Field-aware Factorization Machine）是在FM的基础上发展出来的算法。通过引入field的概念，FFM把相同性质的特征归于同一个field</p>
+<p>在上面的广告分类问题中，“Day=26/11/15”、“Day=1/7/14”、“Day=19/2/15”这三个特征都是代表日期的，可以放到同一个field中。同理，Country也可以放到一个field中。简单来说，同一个categorical特征经过One-Hot编码生成的数值特征都可以放到同一个field，包括用户国籍，广告类型，日期等等</p>
+<p>在FFM中，每一维特征$x_i$，针对其它特征的每一种field $f_j$，都会学习一个隐向量$v_{i,fj}$。因此，隐向量不仅与特征相关，也与field相关。也就是说，“Day=26/11/15”这个特征与“Country”特征和“Ad_type”特征进行关联的时候使用不同的隐向量，这与“Country”和“Ad_type”的内在差异相符，也是FFM中“field-aware”的由来</p>
+<p>假设样本的$n$个特征属于$f$个field，那么FFM的二次项有$nf$个隐向量。而在FM模型中，每一维特征的隐向量只有一个。FM可以看作FFM的特例，是把所有特征都归属到一个field时的FFM模型。根据FFM的field敏感特性，可以导出其模型方程</p>
+<p>$$<br>\hat{y}(x) =w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}&lt;v_{i,f_j},v_{j,f_i}&gt;x_ix_j<br>$$</p>
+<p>其中，$f_j$ 是第 $j$ 个特征所属的field。如果隐向量的长度为 $k$，那么FFM的二次参数有 $nfk$ 个，远多于FM模型的 $nk$ 个。此外，由于隐向量与field相关，FFM二次项并不能够化简，其预测复杂度是 $O(kn^2)$</p>
+<h3 id="特征组合-1"><a href="#特征组合-1" class="headerlink" title="特征组合"></a>特征组合</h3><p>下面以一个例子简单说明FFM的特征组合方式。输入记录如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190330204041301.png" alt="在这里插入图片描述"></p>
+<p>这条记录可以编码成5个特征，其中“Genre=Comedy”和“Genre=Drama”属于同一个field，“Price”是数值型，不用One-Hot编码转换。为了方便说明FFM的样本格式，我们将所有的特征和对应的field映射成整数编号<br><img src="https://img-blog.csdnimg.cn/20190330203905772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>那么，FFM的组合特征有10项，如下图所示<br><img src="https://img-blog.csdnimg.cn/20190330203756179.png" alt="在这里插入图片描述"></p>
+<p>其中，红色是field编号，蓝色是特征编号</p>
+<h3 id="与FM对比"><a href="#与FM对比" class="headerlink" title="与FM对比"></a>与FM对比</h3><p>FFM由于引入了field的概念细化了FM的隐向量的表示，因此设计合理的field之后，<br>效果会比FM好</p>
+<p>但是由于FM经过推导后，复杂度是线性的，而FFM的复杂度是二次的，在工业界的业务中，又常常会出现上亿维度的特征空间，如果使用FFM，会导致成本过高，所以如果使用FFM对于FM没有明显的提升效果，一般选用FM模型</p>
+<p>从FM和FFM在公开数据集上的表现来看，FM和FFM各有千秋，但相比于原始未进行特征交互的LM和直接计算特征交互矩阵W的Poly2方法还是有一定程度的提升<br><img src="https://img-blog.csdnimg.cn/20190330212357206.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="AFM"><a href="#AFM" class="headerlink" title="AFM"></a>AFM</h2><p>FM能够发现二阶组合特征，但是所有特征的权重都是一样的，这会阻碍FM的效果，因为不是所有的特征都是有用的，例如有些无用的特征进行组合会引入噪声，降低FM的效果。因此AFM模型引入了attention机制。attention机制相当于一个加权平均，attention的值就是其中权重，用来判断不同特征之间交互的重要性</p>
+<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><p><img src="https://img-blog.csdnimg.cn/20190330205841849.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2hjbV8wMDc5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以看出，AFM前三个部分，sparse input、embedding layer、pair-wise interaction layer其实和FM是一样的。</p>
+<p>在pair-wise interaction layer中，AFM把embedding后的特征向量进行两两组合，得到：<br><img src="https://img-blog.csdnimg.cn/20190330210719358.jpg" alt="在这里插入图片描述"><br>圆圈中有个点的符号代表的含义是element-wise product，即：<br><img src="https://img-blog.csdnimg.cn/20190330211026680.png" alt="在这里插入图片描述"><br>因此，我们在求和之后得到的是一个K维的向量，还需要跟一个向量p相乘，得到一个具体的数值。</p>
+<p>最后经过attention-based pooling的加权后得到预测公式<br><img src="https://img-blog.csdnimg.cn/20190330211152551.png" alt="在这里插入图片描述"><br>其中$a_{i,j}$的值是通过最小化损失函数得到的，所以还需要加入MLP，将此层称为attention network，现定义为：<br><img src="https://img-blog.csdnimg.cn/20190330211257647.jpg" alt="在这里插入图片描述"></p>
+<p>对score进行 softmax 的归一化：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190330211437730.jpg" alt="在这里插入图片描述"><br>另外，由于这种attention的方式对训练数据的拟合表达更充分，但也更容易过拟合，因此AFM的论文作者除了在loss中加入正则项之外，在attention部分加入了dropout</p>
+<h3 id="与FM的对比"><a href="#与FM的对比" class="headerlink" title="与FM的对比"></a>与FM的对比</h3><p>作者在Frappe和MovieLens数据集上进行了实验，AFM的表现beat掉了所有fine tuned的对比模型（LibFm、HOFM、Wide&amp;Deep、DeepCross）。而且，使用这套框架的传统FM也要比LibFM的效果好，原因之一在于dropout的引入降低了过拟合的风险，第二在于LibFM在迭代优化时使用的是SGD方法，对每个参数的学习步长一致，很容易使后期的学习很快的止步，而Adagrad的引入使得学习率可变，因此性能更加优良。另外，attention的引入，一方面加速了收敛速度，另一方面也具有对交叉特征的可解释性（因为就是权重），类似于特征重要性。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐系统/" rel="tag"># 推荐系统</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/FM/" rel="tag"># FM</a>
+          
+            <a href="/tags/FFM/" rel="tag"># FFM</a>
+          
+            <a href="/tags/AFM/" rel="tag"># AFM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/【软件测试】Assignment_1/" rel="next" title="【软件测试】Assignment 1">
+                <i class="fa fa-chevron-left"></i> 【软件测试】Assignment 1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">GostBop</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CTR"><span class="nav-number">1.</span> <span class="nav-text">CTR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FM"><span class="nav-number">2.</span> <span class="nav-text">FM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归"><span class="nav-number">2.1.</span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征组合"><span class="nav-number">2.2.</span> <span class="nav-text">特征组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助向量"><span class="nav-number">2.3.</span> <span class="nav-text">辅助向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.4.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#one-hot编码"><span class="nav-number">2.5.</span> <span class="nav-text">one-hot编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FFM"><span class="nav-number">3.</span> <span class="nav-text">FFM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#field"><span class="nav-number">3.1.</span> <span class="nav-text">field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征组合-1"><span class="nav-number">3.2.</span> <span class="nav-text">特征组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与FM对比"><span class="nav-number">3.3.</span> <span class="nav-text">与FM对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AFM"><span class="nav-number">4.</span> <span class="nav-text">AFM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构图"><span class="nav-number">4.1.</span> <span class="nav-text">结构图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与FM的对比"><span class="nav-number">4.2.</span> <span class="nav-text">与FM的对比</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GostBop</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
